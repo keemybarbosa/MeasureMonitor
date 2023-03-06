@@ -43,4 +43,20 @@ public class MovieRestController {
         return service.list();
     }
 
+    @GetMapping(
+            value = "/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Movie get(@PathVariable("id") Long id) {
+        return this.service.findById(id);
+    }
+
+    @DeleteMapping(
+            value = "/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Movie delete(@PathVariable("id") Long id) {
+        return service.delete(id);
+    }
+
 }

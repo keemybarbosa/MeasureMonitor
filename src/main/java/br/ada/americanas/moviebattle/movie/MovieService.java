@@ -25,5 +25,13 @@ public class MovieService {
     public List<Movie> list() {
         return new ArrayList<>(this.movies.values());
     }
+    
+    public Movie findById(Long id) {
+        return this.movies.get(id);
+    }
+
+    public Movie delete(Long id) {
+        return this.movies.remove(id);
+    }
 
 }
