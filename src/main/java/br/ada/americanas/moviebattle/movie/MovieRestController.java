@@ -25,6 +25,19 @@ public class MovieRestController {
         return this.service.add(movie);
     }
 
+    @PutMapping(
+            value = "/{id}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Movie update(
+            @PathVariable("id") Long id,
+            @RequestBody Movie movie
+    ) {
+        movie.setId(id);
+        return this.service.update(movie);
+    }
+
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Movie> list() {
         return service.list();
