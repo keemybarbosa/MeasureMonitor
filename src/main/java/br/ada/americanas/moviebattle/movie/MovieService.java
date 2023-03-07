@@ -1,37 +1,40 @@
 package br.ada.americanas.moviebattle.movie;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Optional;
 
 @Service
 public class MovieService {
 
-    private Map<Long, Movie> movies = new HashMap<>();
+    private MovieRepository repository;
 
-    public MovieService() {
+    @Autowired
+    public MovieService(MovieRepository repository) {
+        this.repository = repository;
     }
 
     public Movie add(Movie movie) {
-        this.movies.put(movie.getId(), movie);
-        return movie;
+        return this.repository.save(movie);
     }
 
     public Movie update(Movie movie) {
-        this.movies.put(movie.getId(), movie);
-        return movie;
+        return this.repository.save(movie);
     }
 
-    public List<Movie> list() {
-        return new ArrayList<>(this.movies.values());
-    }
-    
-    public Movie findById(Long id) {
-        return this.movies.get(id);
+    public Iterable<Movie> list() {
+        return this.repository.findAll();
     }
 
-    public Movie delete(Long id) {
-        return this.movies.remove(id);
+    public Optional<Movie> findById(Long id) {
+        return this.repository.findById(id);
+    }
+
+    public Optional<Movie> delete(Long id) {
+        Optional<Movie> deleted = findById(id);
+        this.repository.deleteById(id);
+        return deleted;
     }
 
 }

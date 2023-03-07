@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/movies")
 public class MovieRestController {
@@ -39,7 +37,7 @@ public class MovieRestController {
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Movie> list() {
+    public Iterable<Movie> list() {
         return service.list();
     }
 
@@ -48,7 +46,7 @@ public class MovieRestController {
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public Movie get(@PathVariable("id") Long id) {
-        return this.service.findById(id);
+        return this.service.findById(id).get();
     }
 
     @DeleteMapping(
@@ -56,7 +54,7 @@ public class MovieRestController {
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public Movie delete(@PathVariable("id") Long id) {
-        return service.delete(id);
+        return service.delete(id).get();
     }
 
 }

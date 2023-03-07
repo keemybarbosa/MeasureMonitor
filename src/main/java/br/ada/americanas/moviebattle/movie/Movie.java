@@ -1,10 +1,21 @@
 package br.ada.americanas.moviebattle.movie;
 
-public class Movie {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+import java.io.Serializable;
+
+@Entity
+public class Movie implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String genre;
+    private String image;
     private Float ratings;
 
     public Long getId() {
@@ -29,6 +40,14 @@ public class Movie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public Float getRatings() {
