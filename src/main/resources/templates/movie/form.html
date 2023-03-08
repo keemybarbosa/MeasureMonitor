@@ -11,7 +11,7 @@
       <label>Genre:</label>
       <input type="text" th:field="*{genre}" /><br />
       <label>Ratings:</label>
-      <input type="number" maxlength="3" min="0" max="10" th:field="*{ratings}" /><br />
+      <input type="decimal" maxlength="3" min="0" max="10" th:field="*{ratings}" /><br />
       <label>Image:</label>
       <input type="text" th:field="*{image}"><br />
       <input type="hidden" th:field="*{id}" />
