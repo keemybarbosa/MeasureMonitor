@@ -8,9 +8,11 @@
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Ratings</th>
+                <th th:text="#{movie.title}" />
+                <th th:text="#{movie.genre}" />
+                <th th:text="#{movie.ratings}" />
+                <th th:text="#{action.edit}" />
+                <th th:text="#{action.delete}" />
             </tr>
         </thead>
         <tbody>
@@ -18,8 +20,11 @@
                 <td th:text="${movie.title}" />
                 <td th:text="${movie.genre}" />
                 <td th:text="${movie.ratings}" />
+                <td><a th:href="@{'/app/movies/edit/' + ${movie.id}}" th:text="#{action.edit}" /></td>
+                <td><a th:href="@{'/app/movies/delete/' + ${movie.id}}" th:text="#{action.delete}"/></td>
             </tr>
         </tbody>
     </table>
+    <a href="/app/movies/create" th:text="#{action.new}" />
 </body>
 </html>
