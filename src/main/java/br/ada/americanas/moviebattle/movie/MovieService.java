@@ -1,11 +1,14 @@
 package br.ada.americanas.moviebattle.movie;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
 @Service
+@Validated
 public class MovieService {
 
     private MovieRepository repository;
@@ -15,11 +18,11 @@ public class MovieService {
         this.repository = repository;
     }
 
-    public Movie add(Movie movie) {
+    public Movie add(@Valid Movie movie) {
         return this.repository.save(movie);
     }
 
-    public Movie update(Movie movie) {
+    public Movie update(@Valid Movie movie) {
         return this.repository.save(movie);
     }
 
