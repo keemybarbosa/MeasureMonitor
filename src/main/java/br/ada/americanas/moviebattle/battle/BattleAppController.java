@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -30,7 +31,12 @@ public class BattleAppController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        List<Player> players = playerService.list();
+
+        List<Player> players = new ArrayList<>();
+
+        //o método list retorna um iterable, convertendo para um ArrayList para possibilitar o sort
+        playerService.list().forEach(players::add);
+
         //Ordenada a lista baseado no nome do jogador
         Collections.sort(players, Comparator.comparing(Player::getName));
 

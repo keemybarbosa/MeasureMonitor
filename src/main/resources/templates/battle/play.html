@@ -1,41 +1,77 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<style>
-  .movie-selected {
-    border: solid blue 2px;
-  }
+    <style>
+        .movie-selected {
+            border: solid blue 2px;
+        }
 
-  .movie-image {
-    cursor: pointer;
-  }
-</style>
-<script>
-  function select(image) {
-    const elements = document.getElementsByClassName("movie-image");
-    for (const element of elements) {
-      element.classList.remove("movie-selected");
-    }
+        .movie-image {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function select(image) {
+            const elements = document.getElementsByClassName("movie-image");
+            for (const element of elements) {
+                element.classList.remove("movie-selected");
+            }
 
-    image.classList.add("movie-selected");
+            image.classList.add("movie-selected");
 
-    document.getElementById("movie-selected").value = image.id;
-  }
+            document.getElementById("movie-selected").value = image.id;
+        }
 
-</script>
-<head>
-    <meta charset="UTF-8">
-    <title>Battle</title>
-</head>
-<body>
-  <div class="battle" th:align="center">
-    <h1 th:text="${battle.description}" />
-    <form action="#" th:action="@{'/app/battles/'+${battle.id} + '/answer'}" th:object="${selected_movie}" method="post">
-      <img class="movie-image" th:id="${battle.left.id}" th:src="@{${battle.left.image}}" onclick="select(this)" width="100" height="180" />
-      VS
-      <img class="movie-image" th:id="${battle.right.id}" th:src="@{${battle.right.image}}" onclick="select(this)" width="100" height="180" /><br />
-      <input id="movie-selected" type="hidden" th:field="*{id}">
-      <input type="submit" th:value="Votar">
-    </form>
-  </div>
-</body>
+    </script>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>Battle</title>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Movie Battle</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a th:href="@{/app/}">Home</a></li>
+                        <li><a th:href="@{/app/players}">Players</a></li>
+                        <li><a th:href="@{/app/movies}">Movies</a></li>
+                        <li><a th:href="@{/app/battles/create}">Battle</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="jumbotron">
+
+                <div class="battle" th:align="center">
+                    <h1 th:text="${battle.description}" />
+                    <form action="#" th:action="@{'/app/battles/'+${battle.id} + '/answer'}" th:object="${selected_movie}" method="post">
+                        <img class="movie-image" th:id="${battle.left.id}" th:src="@{${battle.left.image}}" onclick="select(this)" width="100" height="180" />
+                        VS
+                        <img class="movie-image" th:id="${battle.right.id}" th:src="@{${battle.right.image}}" onclick="select(this)" width="100" height="180" /><br />
+                        <input id="movie-selected" type="hidden" th:field="*{id}">
+                        <input type="submit" th:value="Votar">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer class="container-fluid text-center">
+            <p>Movie Battle Copyright</p>
+        </footer>
+    </body>
 </html>
