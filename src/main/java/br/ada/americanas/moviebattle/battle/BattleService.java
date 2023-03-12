@@ -66,6 +66,10 @@ public class BattleService {
         return battleRepository.findAll();
     }
 
+    public Optional<Battle> findById(Long id) {
+        return this.battleRepository.findById(id);
+    }
+
     private void increaseScore(Player player) {
         player.setScore(player.getScore() + 1);
         playerRepository.save(player);

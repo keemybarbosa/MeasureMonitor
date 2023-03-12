@@ -20,6 +20,7 @@ public class MovieRestController {
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public Movie create(@RequestBody Movie movie) {
+        System.out.println("teste");
         return this.service.add(movie);
     }
 
