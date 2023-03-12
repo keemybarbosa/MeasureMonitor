@@ -60,10 +60,15 @@
 
                 <div class="battle" th:align="center">
                     <h1 th:text="${battle.description}" />
+                    <h3 th:text="@{'Olá, ' + 'selecione o filme com maior nota:'}" th:align="left"></h3>
                     <form action="#" th:action="@{'/app/battles/'+${battle.id} + '/answer'}" th:object="${selected_movie}" method="post">
-                        <img class="movie-image" th:id="${battle.left.id}" th:src="@{${battle.left.image}}" onclick="select(this)" width="100" height="180" />
+                        <img class="movie-image" th:alt-title="${battle.left.getTitle()}"
+                             th:id="${battle.left.id}" th:src="@{${battle.left.image}}"
+                             onclick="select(this)" width="100" height="180" />
                         VS
-                        <img class="movie-image" th:id="${battle.right.id}" th:src="@{${battle.right.image}}" onclick="select(this)" width="100" height="180" /><br />
+                        <img class="movie-image" th:alt-title="${battle.right.getTitle()}"
+                             th:id="${battle.right.id}" th:src="@{${battle.right.image}}"
+                             onclick="select(this)" width="100" height="180" /><br />
                         <input id="movie-selected" type="hidden" th:field="*{id}">
                         <input type="submit" th:value="Votar">
                     </form>

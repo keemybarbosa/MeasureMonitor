@@ -59,12 +59,14 @@ public class BattleAppController {
     @PostMapping("/{id}/answer")
     public String answer(
             @PathVariable("id") Long id,
-            @ModelAttribute Movie selected
+            @ModelAttribute Movie selected,
+            Model model
     ) {
         Battle battle = battleService.find(id).get();
         battleService.answer(battle, selected);
         boolean hit = battle.getHit();
-        // IF ternario
+
+        model.addAttribute("player", battle.getPlayer());
         return hit ? "battle/congrats" : "battle/wasted";
     }
 

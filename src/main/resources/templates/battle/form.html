@@ -3,6 +3,8 @@
         <scripts>
         </scripts>
         <main>
+            <h3>Battle Movie</h3>
+            <span>Selecione o Jogador:</span>
             <form action="#" th:action="@{/app/battles}" th:object="${player}" method="post" >
                 <select th:field="*{id}">
                     <option th:each="p: ${players}" th:value="${p.id}" th:text="${p.name}" />

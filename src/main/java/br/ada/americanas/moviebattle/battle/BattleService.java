@@ -33,7 +33,11 @@ public class BattleService {
 
     public Battle create(Player player) {
         Iterable<Movie> movies = movieRepository.findAll();
-        Pair<Movie, Movie> sorted = movieSort.sort(movies);
+
+        Pair<Movie, Movie> sorted;
+        do {
+            sorted = movieSort.sort(movies);
+        } while (sorted.getFirst().getRatings() == null || sorted.getSecond().getRatings() == null);
 
         Battle battle = new Battle();
         battle.setPlayer(player);
