@@ -15,6 +15,7 @@ public class PlayerRestController {
     }
 
     @PostMapping(
+            value = "/create",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )

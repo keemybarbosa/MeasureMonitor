@@ -17,6 +17,16 @@ public class BattleRestController {
         this.service = service;
     }
 
+    @PostMapping(
+            value = "/create",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Battle create(@RequestBody Battle battle) {
+        return this.service.create(battle.getPlayer());
+    }
+
+
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<Battle> list() {
         return service.list();
