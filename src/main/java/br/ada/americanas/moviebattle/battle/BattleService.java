@@ -79,4 +79,8 @@ public class BattleService {
         playerRepository.save(player);
     }
 
+    public Battle update(Battle battle) {
+        return battleRepository.save(battle);
+
+    }
 }

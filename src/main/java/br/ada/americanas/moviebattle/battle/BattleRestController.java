@@ -26,6 +26,18 @@ public class BattleRestController {
         return this.service.create(battle.getPlayer());
     }
 
+    @PutMapping(
+            value = "/{id}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Battle update(
+            @PathVariable("id") Long id,
+            @RequestBody Battle battle
+    ) {
+        battle.setId(id);
+        return this.service.update(battle);
+    }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<Battle> list() {
