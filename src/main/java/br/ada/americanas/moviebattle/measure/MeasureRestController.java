@@ -1,19 +1,16 @@
-package br.ada.americanas.moviebattle.battle;
-
-import br.ada.americanas.moviebattle.movie.Movie;
-import br.ada.americanas.moviebattle.player.Player;
+package br.ada.americanas.moviebattle.measure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/battles")
-public class BattleRestController {
+@RequestMapping("/api/measure")
+public class MeasureRestController {
 
-    private BattleService service;
+    private MeasureService service;
 
     @Autowired
-    public BattleRestController(BattleService service) {
+    public MeasureRestController(MeasureService service) {
         this.service = service;
     }
 
@@ -22,8 +19,8 @@ public class BattleRestController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Battle create(@RequestBody Battle battle) {
-        return this.service.create(battle.getPlayer());
+    public Measure create(@RequestBody Measure player) {
+        return this.service.add(player);
     }
 
     @PutMapping(
@@ -31,16 +28,16 @@ public class BattleRestController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Battle update(
+    public Measure update(
             @PathVariable("id") Long id,
-            @RequestBody Battle battle
+            @RequestBody Measure player
     ) {
-        battle.setId(id);
-        return this.service.update(battle);
+        player.setId(id);
+        return this.service.update(player);
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Battle> list() {
+    public Iterable<Measure> list() {
         return service.list();
     }
 
@@ -48,8 +45,16 @@ public class BattleRestController {
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Battle get(@PathVariable("id") Long id) {
+    public Measure get(@PathVariable("id") Long id) {
         return this.service.findById(id).get();
+    }
+
+    @DeleteMapping(
+            value = "/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Measure delete(@PathVariable("id") Long id) {
+        return service.delete(id).get();
     }
 
 }

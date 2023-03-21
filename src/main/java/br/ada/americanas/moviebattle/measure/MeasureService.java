@@ -1,36 +1,36 @@
-package br.ada.americanas.moviebattle.player;
+package br.ada.americanas.moviebattle.measure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class PlayerService {
-    private PlayerRepository repository;
+public class MeasureService {
+    private MeasureRepository repository;
 
     @Autowired
-    public PlayerService(PlayerRepository repository) {
+    public MeasureService(MeasureRepository repository) {
         this.repository = repository;
     }
 
-    public Player add(Player player) {
+    public Measure add(Measure player) {
         return this.repository.save(player);
     }
 
-    public Player update(Player player) {
+    public Measure update(Measure player) {
         return this.repository.save(player);
     }
 
-    public Iterable<Player> list() {
+    public Iterable<Measure> list() {
         return this.repository.findAll();
     }
 
-    public Optional<Player> findById(Long id) {
+    public Optional<Measure> findById(Long id) {
         return this.repository.findById(id);
     }
 
-    public Optional<Player> delete(Long id) {
-        Optional<Player> deleted = findById(id);
+    public Optional<Measure> delete(Long id) {
+        Optional<Measure> deleted = findById(id);
         this.repository.deleteById(id);
         return deleted;
     }
