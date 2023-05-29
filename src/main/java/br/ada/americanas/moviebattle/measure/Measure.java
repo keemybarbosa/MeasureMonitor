@@ -1,9 +1,8 @@
 package br.ada.americanas.moviebattle.measure;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
 
 import java.sql.Timestamp;
 
@@ -14,6 +13,8 @@ public class Measure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int measure;
+    @CreationTimestamp
+    @Column(nullable = false)
     private Timestamp dateTime;
 
     public Long getId() {
