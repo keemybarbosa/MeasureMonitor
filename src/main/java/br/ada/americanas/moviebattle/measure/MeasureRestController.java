@@ -49,6 +49,13 @@ public class MeasureRestController {
         return this.service.findById(id).get();
     }
 
+    @GetMapping(
+            value = "/last",
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    public Measure get() {
+        return this.service.findLatestMeasure();
+    }
     @DeleteMapping(
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
