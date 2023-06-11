@@ -1,4 +1,4 @@
-package br.ada.americanas.moviebattle;
+package br.ada.americanas.measuremonitor;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

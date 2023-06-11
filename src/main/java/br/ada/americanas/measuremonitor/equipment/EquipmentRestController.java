@@ -1,16 +1,16 @@
-package br.ada.americanas.moviebattle.measure;
+package br.ada.americanas.measuremonitor.equipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/measure")
-public class MeasureRestController {
+@RequestMapping("/api/equipment")
+public class EquipmentRestController {
 
-    private MeasureService service;
+    private EquipmentService service;
 
     @Autowired
-    public MeasureRestController(MeasureService service) {
+    public EquipmentRestController(EquipmentService service) {
         this.service = service;
     }
 
@@ -19,8 +19,8 @@ public class MeasureRestController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Measure create(@RequestBody Measure measure) {
-        return this.service.add(measure);
+    public Equipment create(@RequestBody Equipment equipment) {
+        return this.service.add(equipment);
     }
 
     @PutMapping(
@@ -28,16 +28,16 @@ public class MeasureRestController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Measure update(
+    public Equipment update(
             @PathVariable("id") Long id,
-            @RequestBody Measure measure
+            @RequestBody Equipment equipment
     ) {
-        measure.setId(id);
-        return this.service.update(measure);
+        equipment.setId(id);
+        return this.service.update(equipment);
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<Measure> list() {
+    public Iterable<Equipment> list() {
         return service.list();
     }
 
@@ -45,22 +45,16 @@ public class MeasureRestController {
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Measure get(@PathVariable("id") Long id) {
+    public Equipment get(@PathVariable("id") Long id) {
         return this.service.findById(id).get();
     }
 
-    @GetMapping(
-            value = "/last",
-            produces = {MediaType.APPLICATION_JSON_VALUE}
-    )
-    public Measure get() {
-        return this.service.findLatestMeasure();
-    }
+
     @DeleteMapping(
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Measure delete(@PathVariable("id") Long id) {
+    public Equipment delete(@PathVariable("id") Long id) {
         return service.delete(id).get();
     }
 

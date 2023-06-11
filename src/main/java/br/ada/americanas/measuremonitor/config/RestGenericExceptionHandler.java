@@ -1,4 +1,4 @@
-package br.ada.americanas.moviebattle.config;
+package br.ada.americanas.measuremonitor.config;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
