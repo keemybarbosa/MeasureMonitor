@@ -17,6 +17,8 @@ public class Measure {
     @Column(nullable = false)
     private Timestamp dateTime;
 
+    private String mac;
+
     public Long getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Measure {
 
     public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
     }
 }

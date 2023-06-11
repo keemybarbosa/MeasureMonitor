@@ -19,8 +19,8 @@ public class MeasureRestController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public Measure create(@RequestBody Measure player) {
-        return this.service.add(player);
+    public Measure create(@RequestBody Measure measure) {
+        return this.service.add(measure);
     }
 
     @PutMapping(
@@ -30,10 +30,10 @@ public class MeasureRestController {
     )
     public Measure update(
             @PathVariable("id") Long id,
-            @RequestBody Measure player
+            @RequestBody Measure measure
     ) {
-        player.setId(id);
-        return this.service.update(player);
+        measure.setId(id);
+        return this.service.update(measure);
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})

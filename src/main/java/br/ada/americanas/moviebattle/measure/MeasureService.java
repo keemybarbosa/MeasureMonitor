@@ -18,12 +18,12 @@ public class MeasureService {
         this.repository = repository;
     }
 
-    public Measure add(Measure player) {
-        return this.repository.save(player);
+    public Measure add(Measure measure) {
+        return this.repository.save(measure);
     }
 
-    public Measure update(Measure player) {
-        return this.repository.save(player);
+    public Measure update(Measure measure) {
+        return this.repository.save(measure);
     }
 
     public Iterable<Measure> list() {
